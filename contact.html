@@ -1199,6 +1199,17 @@ footer { background: #0A0906; padding: 56px var(--gutter) 32px; }
   }
 }
 
+.hero-visual {
+  will-change: transform;
+  transform-origin: center top;
+}
+.hero-body {
+  will-change: transform, opacity;
+}
+.hero-stats {
+  will-change: transform, opacity;
+}
+
 </style>
 </head>
 <body lang="ku">
@@ -2033,6 +2044,42 @@ document.addEventListener('click', e => {
   const t = document.querySelector(a.getAttribute('href'));
   if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 });
+
+/* ── PARALLAX HERO ── */
+(function() {
+  const visual = document.querySelector('.hero-visual');
+  const body   = document.querySelector('.hero-body');
+  const stats  = document.querySelector('.hero-stats');
+  if (!visual) return;
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+
+      // وێنەی باکگراوند — هێواز بەرز دەبێتەوە
+      visual.style.transform = `scale(1.06) translateY(${y * 0.35}px)`;
+
+      // تێکستەکان — بەتایبەتی خێراتر
+      if (body) {
+        body.style.transform   = `translateY(${y * 0.18}px)`;
+        body.style.opacity     = `${1 - y * 0.0022}`;
+      }
+
+      // ستاتسەکان — هێواشتر
+      if (stats) {
+        stats.style.transform  = `translateY(${y * 0.08}px)`;
+        stats.style.opacity    = `${1 - y * 0.003}`;
+      }
+
+      ticking = false;
+    });
+  }, { passive: true });
+})();
+
 
 /* ── INIT ── */
 renderCats();
