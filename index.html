@@ -581,8 +581,8 @@ padding: 0 var(--gutter) 24px;
 }
 .hero-overline-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold-hi); }
 .hero-overline-text { 
-  font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; 
-  text-transform: uppercase; color: var(--gold-hi);
+  font-size: .78rem; font-weight: 700; letter-spacing: 0px; 
+  color: var(--gold-hi);
   font-family: 'Noto Sans Arabic', 'Cairo', Arial, sans-serif;
 }
 
@@ -652,7 +652,7 @@ padding: 0 var(--gutter) 24px;
 .section-head { margin-bottom: clamp(40px,6vh,64px); }
 .section-head.center { text-align: center; }
 .section-head.center .sh-line { margin: 0 auto; }
-.sh-tag { display: inline-flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+sh-tag { display: inline-flex; align-items: center; gap: 7px; font-size: .78rem; font-weight: 700; letter-spacing: 0; color: var(--gold); margin-bottom: 12px; }
 .sh-tag::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
 .sh-h2 { font-family: var(--ff-display); font-size: clamp(1.75rem,4vw,3rem); font-weight: 800; line-height: 1.2; letter-spacing: -1px; color: var(--ink); margin-bottom: 12px; }
 .sh-sub { font-size: .94rem; color: var(--ink-60); line-height: var(--lh-ku); max-width: 520px; }
@@ -786,7 +786,7 @@ padding: 0 var(--gutter) 24px;
 .ccard:hover { transform: translateY(-4px); box-shadow: var(--sh-md); border-color: var(--gold); }
 .ccard-icon { width: 52px; height: 52px; border-radius: 16px; background: var(--gold-bg); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: var(--gold); }
 .ccard-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.ccard-lbl { font-size: .7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-30); margin-bottom: 6px; }
+.ccard-lbl { font-size: .74rem; font-weight: 700; letter-spacing: 0; color: var(--ink-30); margin-bottom: 6px; }
 .ccard-val { font-family: var(--ff-display); font-size: .97rem; font-weight: 700; color: var(--ink); }
 .btn-map { display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px; border-radius: var(--r-full); background: var(--ink); color: var(--paper); font-family: var(--ff-display); font-size: .9rem; font-weight: 700; box-shadow: var(--sh-md); transition: all var(--t-base); }
 .btn-map:hover { transform: translateY(-2px); box-shadow: var(--sh-lg); }
@@ -795,7 +795,8 @@ padding: 0 var(--gutter) 24px;
 /* ─────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────── */
-footer { background: var(--ink); padding: 56px var(--gutter) 32px; }
+footer { background: #0A0906; padding: 56px var(--gutter) 32px; }
+
 .footer-in { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 48px; }
 .footer-brand { max-width: 320px; }
 .footer-logo { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
@@ -815,6 +816,21 @@ footer { background: var(--ink); padding: 56px var(--gutter) 32px; }
 [data-dark] .footer-copy { color: rgba(10,9,6,.5); }
 [data-dark] .footer-copy a { color: rgba(10,9,6,.65); }
 [data-dark] .footer-copy a:hover { color: var(--gold); }
+
+[data-dark] .footer-brand-name { color: rgba(245,240,232,.8); }
+[data-dark] .footer-desc { color: rgba(245,240,232,.35); }
+[data-dark] .footer-copy { color: rgba(245,240,232,.45); }
+[data-dark] .footer-copy a { color: rgba(245,240,232,.6); }
+[data-dark] .footer-copy a:hover { color: var(--gold-hi); }
+[data-dark] .footer-soc { 
+  background: rgba(245,240,232,.06); 
+  border-color: rgba(245,240,232,.1);
+  color: rgba(245,240,232,.35);
+}
+[data-dark] .footer-soc:hover { 
+  background: rgba(245,240,232,.12);
+  color: rgba(245,240,232,.9);
+}
 
 /* ─────────────────────────────────────────
    REVEAL
@@ -912,13 +928,7 @@ footer { background: var(--ink); padding: 56px var(--gutter) 32px; }
   flex-direction: column;
   gap: 4px;
 }
-.cglass-lbl {
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
+.cglass-lbl { font-size: .74rem; font-weight: 800; letter-spacing: 0; color: var(--gold); }
 .cglass-val {
   font-family: var(--ff-display);
   font-size: 1rem;
