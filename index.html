@@ -2169,7 +2169,8 @@ function renderItems() {
   }
 
   grid.innerHTML = list.map((item, i) => `
-	<article class="mcard rx d${(i%4)+1}${sel.has(item.id)?' sel':''}" data-cid="${item.id}" onclick="toggleSel(${item.id})">
+	<article class="mcard rx d${(i%4)+1}${sel.has(item.id)?' sel':''}" data-cid="${item.id}" onclick="openItemModal(${item.id})"
+>
 	  <div class="mcard-sel-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
 	  <div class="mcard-img-wrap">
 		<img class="mcard-img" src="${item.img}" alt="${itemName(item,l)}" loading="lazy">
