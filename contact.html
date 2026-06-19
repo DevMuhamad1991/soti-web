@@ -531,21 +531,135 @@ a { text-decoration: none; color: inherit; }
 .nav-burger.open .bbar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 .mob-nav {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
-  background: var(--glass-bg); backdrop-filter: blur(40px) saturate(200%);
-  -webkit-backdrop-filter: blur(40px) saturate(200%);
-  flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  transform: translateY(-100%); transition: transform .44s cubic-bezier(.4,0,.2,1);
-  padding: var(--nav-h) 0 40px;
+  display: none; position: fixed; inset: 0; z-index: 999;
+  backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter: blur(48px) saturate(200%) brightness(1.08);
+  background: rgba(253,252,248,.75);
+  flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .38s cubic-bezier(.4,0,.2,1);
+  padding: 0;
 }
-.mob-nav.open { transform: none; }
+.mob-nav.open { opacity: 1; pointer-events: all; }
+
+/* دوگمەی داخستن */
+.mob-nav-close {
+  position: absolute; top: 18px; left: 18px;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(10,9,6,.06);
+  border: 1px solid rgba(10,9,6,.08);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-60); cursor: pointer;
+  transition: all var(--t-base);
+}
+.mob-nav-close:hover { background: rgba(10,9,6,.1); color: var(--ink); }
+.mob-nav-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* لۆگۆی سەرەوە */
+.mob-nav-logo {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  margin-bottom: 20px;
+}
+.mob-nav-logo-mark {
+  width: 56px; height: 56px; border-radius: 18px;
+  background: linear-gradient(135deg, var(--gold-lo), var(--gold-hi));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(184,149,42,.35), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.mob-nav-logo-mark svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mob-nav-brand { font-family: var(--ff-display); font-size: .95rem; font-weight: 800; color: var(--ink); letter-spacing: -.2px; }
+.mob-nav-brand span { color: var(--gold); }
+
+/* لینکەکان */
 .mob-link {
-  display: flex; align-items: center; gap: 14px; padding: 16px 40px; border-radius: var(--r-md);
-  font-family: var(--ff-display); font-size: 1.15rem; font-weight: 700;
-  color: var(--ink-60); transition: all var(--t-base); width: 260px;
+  display: flex; align-items: center; justify-content: space-between;
+  width: min(340px, 88vw);
+  padding: 15px 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid rgba(10,9,6,.07);
+  box-shadow: 0 2px 12px rgba(10,9,6,.05), inset 0 1px 0 rgba(255,255,255,.9);
+  text-decoration: none;
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.mob-link svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
-.mob-link:hover { color: var(--ink); background: var(--ink-6); }
+.mob-link:hover, .mob-link:active {
+  background: rgba(255,255,255,.92);
+  border-color: rgba(184,149,42,.3);
+  box-shadow: 0 6px 24px rgba(184,149,42,.15), inset 0 1px 0 rgba(255,255,255,1);
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* چەپی لینک — ئایکۆن + ناو */
+.mob-link-left { display: flex; align-items: center; gap: 14px; }
+.mob-link-icon {
+  width: 42px; height: 42px; border-radius: 13px;
+  background: linear-gradient(135deg, var(--gold-bg), rgba(184,149,42,.14));
+  border: 1px solid rgba(184,149,42,.18);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--t-base);
+}
+.mob-link:hover .mob-link-icon {
+  background: linear-gradient(135deg, var(--gold-lo), var(--gold-hi));
+  border-color: var(--gold);
+  box-shadow: 0 4px 12px rgba(184,149,42,.3);
+}
+.mob-link-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; transition: stroke var(--t-base); }
+.mob-link:hover .mob-link-icon svg { stroke: #fff; }
+
+.mob-link-text { display: flex; flex-direction: column; gap: 1px; }
+.mob-link-name { font-family: var(--ff-display); font-size: 1rem; font-weight: 800; color: var(--ink); letter-spacing: -.2px; }
+.mob-link-sub { font-size: .72rem; color: var(--ink-30); font-weight: 500; }
+
+/* ئەرەوی ڕاستەوە */
+.mob-link-arrow {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(10,9,6,.04);
+  border: 1px solid rgba(10,9,6,.06);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-30); flex-shrink: 0;
+  transition: all var(--t-base);
+}
+.mob-link:hover .mob-link-arrow {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.mob-link-arrow svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* خەتی خوارەوە */
+.mob-nav-footer {
+  margin-top: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.mob-nav-footer-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-hi); opacity: .5; }
+.mob-nav-footer-text { font-size: .72rem; color: var(--ink-30); font-family: var(--ff-display); font-weight: 600; }
+
+/* دارک مۆد */
+[data-dark] .mob-nav {
+  background: rgba(12,11,8,.82);
+  backdrop-filter: blur(48px) saturate(180%) brightness(.9);
+  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(.9);
+}
+[data-dark] .mob-link {
+  background: rgba(245,240,232,.05);
+  border-color: rgba(245,240,232,.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,.2), inset 0 1px 0 rgba(245,240,232,.06);
+}
+[data-dark] .mob-link:hover {
+  background: rgba(245,240,232,.09);
+  border-color: rgba(184,149,42,.35);
+  box-shadow: 0 6px 24px rgba(184,149,42,.12), inset 0 1px 0 rgba(245,240,232,.08);
+}
+[data-dark] .mob-link-name { color: rgba(245,240,232,.9); }
+[data-dark] .mob-link-sub { color: rgba(245,240,232,.25); }
+[data-dark] .mob-link-arrow { background: rgba(245,240,232,.06); border-color: rgba(245,240,232,.08); color: rgba(245,240,232,.3); }
+[data-dark] .mob-nav-close { background: rgba(245,240,232,.07); border-color: rgba(245,240,232,.1); color: rgba(245,240,232,.5); }
+[data-dark] .mob-nav-close:hover { background: rgba(245,240,232,.12); color: rgba(245,240,232,.9); }
+[data-dark] .mob-nav-brand { color: rgba(245,240,232,.85); }
+[data-dark] .mob-nav-footer-text { color: rgba(245,240,232,.2); }
 
 /* ─────────────────────────────────────────
    HERO
@@ -1210,23 +1324,87 @@ footer { background: #0A0906; padding: 56px var(--gutter) 32px; }
 
 <!-- ═══════════ MOB NAV ═══════════ -->
 <div class="mob-nav" id="mobNav">
-  <a href="#menu"	class="mob-link" onclick="closeMob()">
-	<svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
-	<span data-i18n="menu">مێنۆ</span>
+
+  <button class="mob-nav-close" onclick="closeMob()" aria-label="داخستن">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+
+  <div class="mob-nav-logo">
+    <div class="mob-nav-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+    </div>
+    <div class="mob-nav-brand">Golden <span>·</span> <span data-i18n="navBrand">مەتحەم</span></div>
+  </div>
+
+  <a href="#menu" class="mob-link" onclick="closeMob()">
+    <div class="mob-link-left">
+      <div class="mob-link-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
+      </div>
+      <div class="mob-link-text">
+        <span class="mob-link-name" data-i18n="menu">مێنۆ</span>
+        <span class="mob-link-sub" data-i18n="menuSub2">هەموو خواردنەکانمان</span>
+      </div>
+    </div>
+    <div class="mob-link-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
   </a>
+
   <a href="#popular" class="mob-link" onclick="closeMob()">
-	<svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-	<span data-i18n="popular">بەناوبانگ</span>
+    <div class="mob-link-left">
+      <div class="mob-link-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="mob-link-text">
+        <span class="mob-link-name" data-i18n="popular">بەناوبانگ</span>
+        <span class="mob-link-sub" data-i18n="popularSub2">زۆرترین داواکراوەکان</span>
+      </div>
+    </div>
+    <div class="mob-link-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
   </a>
-  <a href="#about"   class="mob-link" onclick="closeMob()">
-	<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-	<span data-i18n="aboutUs">دەربارەی ئێمە</span>
+
+  <a href="#about" class="mob-link" onclick="closeMob()">
+    <div class="mob-link-left">
+      <div class="mob-link-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="mob-link-text">
+        <span class="mob-link-name" data-i18n="aboutUs">دەربارەی ئێمە</span>
+        <span class="mob-link-sub" data-i18n="aboutSub2">چیرۆکی گولدن</span>
+      </div>
+    </div>
+    <div class="mob-link-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
   </a>
+
   <a href="#contact" class="mob-link" onclick="closeMob()">
-	<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-	<span data-i18n="contact">پەیوەندی</span>
+    <div class="mob-link-left">
+      <div class="mob-link-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div class="mob-link-text">
+        <span class="mob-link-name" data-i18n="contact">پەیوەندی</span>
+        <span class="mob-link-sub" data-i18n="contactSub2">پەیوەندیمان پێوە بکە</span>
+      </div>
+    </div>
+    <div class="mob-link-arrow">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
   </a>
+
+  <div class="mob-nav-footer">
+    <div class="mob-nav-footer-dot"></div>
+    <span class="mob-nav-footer-text">Golden Restaurant · سلێمانی</span>
+    <div class="mob-nav-footer-dot"></div>
+  </div>
+
 </div>
+
+
 
 <!-- ═══════════ HERO ═══════════ -->
 <section id="hero">
@@ -1457,6 +1635,12 @@ const I18N = {
 	rating: 'نرخاندنی کڕیار', happyCustomers: 'کڕیاری خوشحاڵ', dishes: 'خواردنی جیاواز', experience: 'ئەزموون',
 	ourMenu: 'مێنۆی ئێمە', menuTitle: 'هەڵبژێرە لە ژنگەی خواردنەکان',
 	menuSub: 'هەر خواردنێک بە مادەی تازە و کوالێتی بەرز ئامادە دەکرێت',
+  // کوردی
+menuSub2: 'هەموو خواردنەکانمان',
+popularSub2: 'زۆرترین داواکراوەکان',
+aboutSub2: 'چیرۆکی گولدن',
+contactSub2: 'پەیوەندیمان پێوە بکە',
+
 	searchPlaceholder: 'گەڕان بۆ خواردن...',
 	mostOrdered: 'زۆرترین داواکراوەکان',
 	founded: 'ساڵی دامەزراندن',
@@ -1504,6 +1688,11 @@ followUs: 'بمانبینە لە:',
 	yearsPlus: 'سنة',
 	contactSub: 'يسعدنا التواصل معك دائماً',
 callNow: 'اتصل الآن',
+menuSub2: 'جميع أطباقنا',
+popularSub2: 'الأكثر طلباً',
+aboutSub2: 'قصة Golden',
+contactSub2: 'تواصل معنا',
+
 sendEmail: 'أرسل بريداً',
 openNow: 'مفتوح الآن',
 findUs: 'اعثر علينا على الخريطة',
@@ -1546,6 +1735,10 @@ sendEmail: 'Send Email',
 openNow: 'Open Now',
 findUs: 'Find us on the map',
 followUs: 'Follow us on:',
+menuSub2: 'All our dishes',
+popularSub2: 'Most ordered items',
+aboutSub2: 'Golden story',
+contactSub2: 'Get in touch',
 	viewOnMaps: 'View on Google Maps',
 	footerDesc: 'Authentic taste, high quality, premium service — in Sulaymaniyah, Kurdistan.',
 	copyright: '© 2025 Golden Restaurant — All Rights Reserved', privacy: 'Privacy Policy',
@@ -1708,17 +1901,18 @@ function toggleDark() {
 	: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
 }
 
-/* ── MOBILE NAV ── */
 function toggleMob() {
   const m = document.getElementById('mobNav'), b = document.getElementById('burger');
-  m.classList.toggle('open'); b.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  const isOpen = m.classList.toggle('open');
+  b.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 function closeMob() {
   document.getElementById('mobNav').classList.remove('open');
   document.getElementById('burger').classList.remove('open');
   document.body.style.overflow = '';
 }
+
 
 /* ── NAVBAR SCROLL ── */
 window.addEventListener('scroll', () => {
