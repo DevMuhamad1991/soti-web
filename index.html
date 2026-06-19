@@ -847,6 +847,224 @@ footer { background: var(--ink); padding: 56px var(--gutter) 32px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+/* ─── CONTACT GLASS ─── */
+.contact-glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.cglass-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--sh-sm);
+  transition: all var(--t-base);
+  display: flex;
+  flex-direction: column;
+}
+.cglass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sh-lg);
+  border-color: var(--gold);
+}
+
+.cglass-img {
+  height: 80px;
+  background: linear-gradient(135deg, var(--gold-lo), var(--gold-hi));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.cglass-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,.12));
+}
+.cglass-img svg {
+  width: 30px; height: 30px;
+  stroke: #fff; fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.2));
+}
+
+.cglass-body {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cglass-lbl {
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.cglass-val {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.cglass-sub {
+  font-size: .78rem;
+  color: var(--ink-30);
+}
+.cglass-action {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .76rem;
+  font-weight: 700;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-bg);
+  width: fit-content;
+  transition: all var(--t-fast);
+}
+.cglass-action:hover {
+  color: var(--gold-hi);
+  border-color: var(--gold);
+}
+.cglass-open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  background: rgba(22,160,90,.1);
+  border: 1px solid rgba(22,160,90,.25);
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  font-size: .72rem;
+  font-weight: 700;
+  color: #16A05A;
+  width: fit-content;
+}
+.cglass-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #16A05A;
+  animation: dotPulse 1.8s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.7); }
+}
+
+/* MAP */
+.contact-map-wrap {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-md);
+  position: relative;
+  margin-bottom: 24px;
+}
+.contact-map-label {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  padding: 8px 16px;
+  font-family: var(--ff-display);
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: var(--sh-sm);
+}
+.contact-map-label svg {
+  width: 14px; height: 14px;
+  stroke: var(--gold); fill: none;
+  stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.contact-map {
+  width: 100%;
+  height: 340px;
+  border: none;
+  display: block;
+  filter: grayscale(20%);
+  transition: filter var(--t-base);
+}
+.contact-map-wrap:hover .contact-map {
+  filter: grayscale(0%);
+}
+
+/* SOCIAL ROW */
+.contact-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.contact-social-lbl {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--ink-30);
+}
+.csoc {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: var(--r-full);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  font-family: var(--ff-display);
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ink-60);
+  box-shadow: var(--sh-xs);
+  transition: all var(--t-base);
+}
+.csoc svg {
+  width: 15px; height: 15px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.csoc:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-md);
+}
+
+/* DARK MODE */
+[data-dark] .contact-map {
+  filter: grayscale(30%) invert(90%) hue-rotate(180deg);
+}
+
+@media (max-width: 768px) {
+  .contact-glass-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-map { height: 260px; }
+}
+@media (max-width: 480px) {
+  .contact-glass-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 <body lang="ku">
@@ -1104,41 +1322,102 @@ footer { background: var(--ink); padding: 56px var(--gutter) 32px; }
 <!-- ═══════════ CONTACT ═══════════ -->
 <section class="section section--alt" id="contact">
   <div class="section-in">
-	<div class="section-head center rx">
-	  <div class="sh-tag" data-i18n="contact">پەیوەندی</div>
-	  <h2 class="sh-h2" data-i18n="contactTitle">پەیوەندیمان پێوە بکە</h2>
-	  <div class="sh-line"></div>
-	</div>
-	<div class="contact-grid rx d1">
-	  <div class="ccard">
-		<div class="ccard-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-		<div class="ccard-lbl" data-i18n="phone">تەلەفۆن</div>
-		<div class="ccard-val" dir="ltr">+964 750 123 4567</div>
-	  </div>
-	  <div class="ccard">
-		<div class="ccard-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-		<div class="ccard-lbl" data-i18n="address">ناونیشان</div>
-		<div class="ccard-val" data-i18n="addressVal">سلێمانی، شاری تازە</div>
-	  </div>
-	  <div class="ccard">
-		<div class="ccard-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-		<div class="ccard-lbl" data-i18n="hours">کاتی کارکردن</div>
-		<div class="ccard-val">١٠:٠٠ — ٢٣:٠٠</div>
-	  </div>
-	  <div class="ccard">
-		<div class="ccard-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-		<div class="ccard-lbl" data-i18n="email">ئیمەیڵ</div>
-		<div class="ccard-val" dir="ltr">hello@golden.iq</div>
-	  </div>
-	</div>
-	<div style="text-align:center" class="rx d2">
-	  <a href="#" class="btn-map">
-		<svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-		<span data-i18n="viewOnMaps">بینی لەسەر Google Maps</span>
-	  </a>
-	</div>
+
+    <div class="section-head center rx">
+      <div class="sh-tag" data-i18n="contact">پەیوەندی</div>
+      <h2 class="sh-h2" data-i18n="contactTitle">پەیوەندیمان پێوە بکە</h2>
+      <p class="sh-sub" style="margin:0 auto" data-i18n="contactSub">هەموو وەختێک خوشحاڵین بیستینت — وێنەی مەتحەمەکەمان لەخوارەوەیە</p>
+      <div class="sh-line"></div>
+    </div>
+
+    <!-- INFO CARDS -->
+    <div class="contact-glass-grid rx d1">
+
+      <div class="cglass-card">
+        <div class="cglass-img">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="cglass-body">
+          <div class="cglass-lbl" data-i18n="phone">تەلەفۆن</div>
+          <div class="cglass-val" dir="ltr">+964 750 123 4567</div>
+          <a href="tel:+9647501234567" class="cglass-action" data-i18n="callNow">پەیوەندی بکە</a>
+        </div>
+      </div>
+
+      <div class="cglass-card">
+        <div class="cglass-img">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="cglass-body">
+          <div class="cglass-lbl" data-i18n="address">ناونیشان</div>
+          <div class="cglass-val" data-i18n="addressVal">سلێمانی، شاری تازە</div>
+          <div class="cglass-sub">کوردستان، عێراق</div>
+        </div>
+      </div>
+
+      <div class="cglass-card">
+        <div class="cglass-img">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="cglass-body">
+          <div class="cglass-lbl" data-i18n="hours">کاتی کارکردن</div>
+          <div class="cglass-val">١٠:٠٠ — ٢٣:٠٠</div>
+          <div class="cglass-open-badge">
+            <span class="cglass-dot"></span>
+            <span data-i18n="openNow">ئێستا کراوەیە</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cglass-card">
+        <div class="cglass-img">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="cglass-body">
+          <div class="cglass-lbl" data-i18n="email">ئیمەیڵ</div>
+          <div class="cglass-val" dir="ltr">hello@golden.iq</div>
+          <a href="mailto:hello@golden.iq" class="cglass-action" data-i18n="sendEmail">ئیمەیڵ بنێرە</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAP EMBED -->
+    <div class="contact-map-wrap rx d2">
+      <div class="contact-map-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="findUs">بمانبینە لەسەر نەخشە</span>
+      </div>
+      <iframe
+        class="contact-map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3267.6!2d45.4329!3d35.5578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDMzJzI4LjEiTiA0NcKwMjUnNTguNCJF!5e0!3m2!1sen!2siq!4v1234567890"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="مەتحەم گولدن — سلێمانی">
+      </iframe>
+    </div>
+
+    <!-- SOCIAL ROW -->
+    <div class="contact-social-row rx d3">
+      <span class="contact-social-lbl" data-i18n="followUs">بمانبینە لە:</span>
+      <a href="#" class="csoc" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="#" class="csoc" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+      <a href="#" class="csoc" aria-label="TikTok">
+        <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        TikTok
+      </a>
+    </div>
+
   </div>
 </section>
+
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
@@ -1190,8 +1469,12 @@ const I18N = {
 	aboutP1: 'مەتحەم گولدن لە ساڵی ٢٠١٥ دامەزرا بە ئامانجی پێشکەشکردنی باشترین تامی خواردن لە سلێمانی. بۆ ئێمە، هەر خواردنێک چیرۆکێکی تایبەتی هەیە.',
 	aboutP2: 'ئێمە تەنها بە باشترین مادەی خاوی کار دەکەین — گۆشتی تازە، سەوزەی سروشتی، و دەیەکانی رێچک و بەهار کە تامی ناهاویە دروست دەکەن.',
 	yearsPlus: 'ساڵ',
-	contactTitle: 'پەیوەندیمان پێوە بکە',
-	phone: 'تەلەفۆن', address: 'ناونیشان', addressVal: 'سلێمانی، شاری تازە', hours: 'کاتی کارکردن', email: 'ئیمەیڵ',
+	contactSub: 'هەموو وەختێک خوشحاڵین بیستینت',
+callNow: 'پەیوەندی بکە',
+sendEmail: 'ئیمەیڵ بنێرە',
+openNow: 'ئێستا کراوەیە',
+findUs: 'بمانبینە لەسەر نەخشە',
+followUs: 'بمانبینە لە:',
 	viewOnMaps: 'بینی لەسەر Google Maps',
 	footerDesc: 'تامی ڕاستەقینە، کوالێتی بەرز، خزمەتگوزاریی پریمیەم — لە سلێمانی، کوردستان.',
 	copyright: '© ٢٠٢٥ مەتحەم گولدن — هەموو مافەکان پارێزراون', privacy: 'سیاسەتی تایبەتمەندی',
@@ -1224,8 +1507,12 @@ const I18N = {
 	aboutP1: 'تأسس مطعم Golden عام ٢٠١٥ بهدف تقديم أفضل النكهات في السليمانية. بالنسبة لنا، كل طبق له حكاية خاصة.',
 	aboutP2: 'نعمل فقط بأجود المكونات — لحوم طازجة، خضروات عضوية، وعشرات التوابل التي تصنع نكهة لا مثيل لها.',
 	yearsPlus: 'سنة',
-	contactTitle: 'تواصل معنا',
-	phone: 'الهاتف', address: 'العنوان', addressVal: 'السليمانية، المدينة الجديدة', hours: 'ساعات العمل', email: 'البريد الإلكتروني',
+	contactSub: 'يسعدنا التواصل معك دائماً',
+callNow: 'اتصل الآن',
+sendEmail: 'أرسل بريداً',
+openNow: 'مفتوح الآن',
+findUs: 'اعثر علينا على الخريطة',
+followUs: 'تابعنا على:',
 	viewOnMaps: 'عرض على خرائط Google',
 	footerDesc: 'نكهة أصيلة، جودة عالية، خدمة متميزة — في السليمانية، كردستان.',
 	copyright: '© ٢٠٢٥ مطعم Golden — جميع الحقوق محفوظة', privacy: 'سياسة الخصوصية',
@@ -1258,8 +1545,12 @@ const I18N = {
 	aboutP1: 'Golden Restaurant was founded in 2015 with the goal of offering the best flavors in Sulaymaniyah. For us, every dish has its own special story.',
 	aboutP2: 'We work only with the finest ingredients — fresh meat, organic vegetables, and dozens of spices that create an unparalleled taste.',
 	yearsPlus: 'Years',
-	contactTitle: 'Get in Touch',
-	phone: 'Phone', address: 'Address', addressVal: 'Sulaymaniyah, New City', hours: 'Working Hours', email: 'Email',
+	contactSub: 'We\'re always happy to hear from you',
+callNow: 'Call Now',
+sendEmail: 'Send Email',
+openNow: 'Open Now',
+findUs: 'Find us on the map',
+followUs: 'Follow us on:',
 	viewOnMaps: 'View on Google Maps',
 	footerDesc: 'Authentic taste, high quality, premium service — in Sulaymaniyah, Kurdistan.',
 	copyright: '© 2025 Golden Restaurant — All Rights Reserved', privacy: 'Privacy Policy',
